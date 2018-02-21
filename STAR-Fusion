@@ -281,6 +281,7 @@ main: {
             die "Error, cannot locate star index at $star_index_dir";
         }
         
+        warn "-will now run STAR\n";
         &run_STAR($pipeliner, $left_fq_filename, $right_fq_filename, "std");
     
         if ($BBMERGE_flag) {
@@ -297,6 +298,8 @@ main: {
                                                   "$checkpoints_dir/symlink_chim_junctions.ok"));
         }
         
+    } else {
+      warn "--chimeric_junction specified, will not run STAR\n";
     }
     
     ## predict fusions
