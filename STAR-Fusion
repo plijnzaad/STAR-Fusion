@@ -122,6 +122,8 @@ my $usage = <<__EOUSAGE__;
 #
 #    --version                             report version ($VERSION)
 #
+#    --minigenome_max_intron_length  <int>  passed to FusionInspector
+#    --minigenome_flank_size <int>          passed to FusionInspector
 ###################################################################################
 
 
@@ -146,6 +148,10 @@ my $DENOVO_RECONSTRUCT = 0;
 my $ANNOTATE = 0;
 my $EXAMINE_CODING_EFFECT = 0;
 
+my $minigenome_max_intron_length = 1000;
+my $minigenome_flank_size = 1000;
+
+    
 &GetOptions ( 'help|h' => \$help_flag,
               
               'left_fq=s' => \$left_fq_filename,
@@ -188,6 +194,9 @@ my $EXAMINE_CODING_EFFECT = 0;
               'denovo_reconstruct' => \$DENOVO_RECONSTRUCT,
               
               'bbmerge' => \$BBMERGE_flag,
+
+              'minigenome_max_intron_length' => \$minigenome_max_intron_length,
+              'minigenome_flank_size' => \$minigenome_flank_size,
     );
 
 
@@ -420,6 +429,8 @@ main: {
             $FI_cmd = "$BASEDIR/FusionInspector/FusionInspector --fusions $abridged_final_output "
                 . " --out_prefix finspector --min_junction_reads $MIN_JUNCTION_READS --min_novel_junction_support $MIN_NOVEL_JUNCTION_SUPPORT "
                 . " --prep_for_IGV --max_promiscuity $MAX_PROMISCUITY --out_dir $FI_outdir "
+                . " --minigenome_max_intron_length $minigenome_max_intron_length "
+                . " --minigenome_flank_size $minigenome_flank_size "
                 . " --genome_lib_dir $genome_lib_dir --only_fusion_reads --fusion_contigs_only "
                 . " --left_fq $FI_left_fq";
             if ($right_fq_filename) {
