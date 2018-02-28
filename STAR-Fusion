@@ -195,8 +195,8 @@ my $minigenome_flank_size = 1000;
               
               'bbmerge' => \$BBMERGE_flag,
 
-              'minigenome_max_intron_length' => \$minigenome_max_intron_length,
-              'minigenome_flank_size' => \$minigenome_flank_size,
+              'minigenome_max_intron_length=i' => \$minigenome_max_intron_length,
+              'minigenome_flank_size=i' => \$minigenome_flank_size,
     );
 
 
