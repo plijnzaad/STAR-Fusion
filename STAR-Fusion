@@ -131,6 +131,7 @@ __EOUSAGE__
 
     ;
 
+print STDERR "\n\nArguments used: ".join(" ", @ARGV) ."\n\n";
 
 my $no_filter = 0;
 
